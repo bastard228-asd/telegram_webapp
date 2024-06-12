@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин телефонов</title>
+    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+	* {
+		-webkit-tap-highlight-color: transparent;
+	}
+    button:active, button:focus {
+        outline: none;
+    }
+    button {
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+	</style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body id='bid' class="bg-gray-100 pb-24">
+
+    <div class="container mx-auto px-4">
+        <h1 class="text-xl font-semibold mt-5 mb-3">Телефоны</h1>
+        <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+        </div>
+    </div>
+
+
+    <!-- Модальное окно с описанием товаров -->
+    <div id="productModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto py-5 border w-[17rem] shadow-lg rounded-md bg-white mb-64">
+            <div id="productDetails" class="mt-3 text-center">
+                <!-- Описание товара из JS -->
+            </div>
+            <div class="mt-3 px-3 text-left">
+                <button id="closeModal" class="px-4 py-2 bg-gray-200 rounded">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно корзины -->
+    <div id="cart" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white mb-64">
+
+        <!-- Modal header -->
+        <div class="flex items-center justify-between pb-4 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Корзина
+            </h3>
+            <button type="button" id="closeModalCart" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+
+        <div id="cartItems" class="mt-4">
+            <!-- Товары в корзине -->
+        </div>
+        <p class="text-right font-semibold mt-4">Итого: <span id="totalPrice">0</span></p>
+
+        <!-- Кнопка закрытия корзины -->
+        <div class="flex justify-between pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button id="BtnPurchase" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Подтвердить покупку</button>
+            <button id="closeCart" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-400 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Закрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Навигационная панель -->
+    <div class="border-solid border-2 border-zinc-950 fixed bottom-0 inset-x-0 bg-gray-100 p-4 flex justify-around">
+        <button id="toggleCart" class="shadow-lg w-10 h-10 bg-blue-500 rounded-full hover:bg-blue-700 flex justify-center items-center">
+            <img src="img\cart24.png" alt="Корзина">
+        </button>
+        <button onclick="document.location='index.html'" class="shadow-lg w-10 h-10 bg-green-500 rounded-full hover:bg-green-700 flex justify-center items-center">
+            <img src="img\home24.svg" alt="Главная">
+            <a href="index.html"></a>
+        </button>
+        <button id="togglePayment" class="shadow-lg w-10 h-10 bg-red-500 rounded-full hover:bg-red-700 flex justify-center items-center">
+            <img src="img\payment24.png" alt="Оформить заказ">
+        </button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
